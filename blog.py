@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import string
+import user_agents
 from post import get_posts_list, get_post_content
 from flask import Flask, render_template, request
 from werkzeug.contrib.atom import AtomFeed
-from mobile.sniffer.detect import detect_mobile_browser
 
 import sys
 reload(sys)
@@ -15,7 +15,7 @@ posts_dir = 'posts'
 
 def is_mobile_request():
     ua = request.user_agent.string
-    if ua and detect_mobile_browser(ua):
+    if ua and user_agents.parse(ua).is_mobile:
         return True
     else:
         return False

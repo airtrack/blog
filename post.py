@@ -22,7 +22,7 @@ def get_post_content(dir, post_time, post_name):
     if not os.path.exists(file_name):
         return None
     output = io.BytesIO()
-    markdown.markdownFromFile(input = file_name, output = output, extensions = ['markdown.extensions.tables'])
+    markdown.markdownFromFile(input = file_name, output = output, extensions = ['tables', 'fenced_code'])
     content = output.getvalue()
     output.close()
     return content.decode(encoding='utf-8', errors='strict')
